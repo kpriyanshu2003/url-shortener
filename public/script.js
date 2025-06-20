@@ -1,103 +1,74 @@
-let urlDatabase = {};
-let urlCounter = 0;
-let totalClicks = 0;
+async function shortenUrl() {
+  const url = document.getElementById("urlInput").value.trim();
+  if (!url) return showToast("Please enter a URL!");
+  if (!isValidUrl(url))
+    return showToast("Please enter a valid URL (include http:// or https://)");
 
-function generateShortCode() {
-  const chars =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  let result = "";
-  for (let i = 0; i < 6; i++) {
-    result += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return result;
-}
-
-function isValidUrl(string) {
   try {
-    new URL(string);
-    return true;
-  } catch (_) {
-    return false;
+    const res = await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url }),
+    });
+
+    const data = await res.json();
+    if (!data?.short_url)
+      return showToast("Failed to shorten URL. Please try again.");
+
+    const short = `${window.location.origin}${data.short_url}`;
+    document.getElementById("shortUrl").textContent = short;
+    document.getElementById("result").classList.add("show");
+    document.getElementById("urlInput").value = "";
+  } catch (err) {
+    console.error("Error:", err);
+    showToast("Error connecting to the server.");
   }
-}
-
-function shortenUrl() {
-  const urlInput = document.getElementById("urlInput");
-  const longUrl = urlInput.value.trim();
-
-  if (!longUrl) {
-    alert("Please enter a URL!");
-    return;
-  }
-
-  if (!isValidUrl(longUrl)) {
-    alert("Please enter a valid URL (include http:// or https://)");
-    return;
-  }
-
-  const shortCode = generateShortCode();
-  const shortUrl = `https://short.ly/${shortCode}`;
-
-  // Store in our "database"
-  urlDatabase[shortCode] = {
-    originalUrl: longUrl,
-    clicks: 0,
-    created: new Date(),
-  };
-
-  // Update stats
-  urlCounter++;
-  document.getElementById("urlCount").textContent = urlCounter;
-
-  // Show result
-  document.getElementById("shortUrl").textContent = shortUrl;
-  document.getElementById("result").classList.add("show");
-
-  // Clear input
-  urlInput.value = "";
 }
 
 function copyToClipboard() {
-  const shortUrl = document.getElementById("shortUrl").textContent;
-  const copyBtn = document.getElementById("copyBtn");
-
+  const text = document.getElementById("shortUrl").textContent;
   navigator.clipboard
-    .writeText(shortUrl)
+    .writeText(text)
     .then(() => {
-      copyBtn.textContent = "✅ Copied!";
-      copyBtn.classList.add("copied");
-
-      // Simulate a click (in real app, this would happen when someone visits the short URL)
-      totalClicks++;
-      document.getElementById("clickCount").textContent = totalClicks;
-
-      setTimeout(() => {
-        copyBtn.textContent = "📋 Copy Link";
-        copyBtn.classList.remove("copied");
-      }, 2000);
+      document.getElementById("clickCount").textContent = ++totalClicks;
+      showToast("✅ Copied!");
     })
     .catch(() => {
-      // Fallback for older browsers
-      const textArea = document.createElement("textarea");
-      textArea.value = shortUrl;
-      document.body.appendChild(textArea);
-      textArea.select();
+      const t = document.createElement("textarea");
+      t.value = text;
+      document.body.appendChild(t);
+      t.select();
       document.execCommand("copy");
-      document.body.removeChild(textArea);
-
-      copyBtn.textContent = "✅ Copied!";
-      copyBtn.classList.add("copied");
-
-      setTimeout(() => {
-        copyBtn.textContent = "📋 Copy Link";
-        copyBtn.classList.remove("copied");
-      }, 2000);
+      document.body.removeChild(t);
+      showToast("✅ Copied!");
     });
 }
 
-// Allow Enter key to trigger shortening
-document.getElementById("urlInput").addEventListener("keypress", function (e) {
-  if (e.key === "Enter") {
-    shortenUrl();
+const isValidUrl = (url) => {
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+function showToast(msg) {
+  if (!msg) return;
+  const x = document.getElementById("snackbar");
+  x.textContent = msg;
+  x.className = "show";
+  setTimeout(() => x.classList.remove("show"), 3000);
+}
+
+document.getElementById("urlInput").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") shortenUrl();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.ctrlKey && e.key === "c") {
+    copyToClipboard();
+    e.preventDefault();
+    showToast("✅ Copied!");
   }
 });
