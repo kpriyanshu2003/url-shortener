@@ -160,7 +160,7 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost:3300",
+	Host:             "https://url-shortener-uy9w.onrender.com/",
 	BasePath:         "/",
 	Schemes:          []string{},
 	Title:            "URL Shortener API",

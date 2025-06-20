@@ -20,7 +20,17 @@
 
 ## API Endpoints
 
-1. POST `/` : Create a new shortened URL.
+1. Frontend UI - GET - `/`
+
+   - Serves a simple HTML form to input URLs and display shortened links.
+   - Located at `/public/index.html`.
+
+2. Swagger UI - GET - `/swagger/index.html`
+
+   - Auto-generated API documentation using Swaggo.
+   - Provides interactive API testing and documentation.
+
+3. POST `/` : Create a new shortened URL.
 
 Request Body:
 
@@ -40,7 +50,7 @@ Response:
 }
 ```
 
-2. GET /:code : Redirects to the original URL associated with the given code.
+4. GET /:code : Redirects to the original URL associated with the given code.
 
 Example:
 GET `/custom123` → redirects to `https://example.com`

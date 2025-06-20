@@ -6,7 +6,7 @@
         "contact": {},
         "version": "1.0"
     },
-    "host": "localhost:3300",
+    "host": "https://url-shortener-uy9w.onrender.com/",
     "basePath": "/",
     "paths": {
         "/": {
