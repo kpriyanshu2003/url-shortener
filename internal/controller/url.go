@@ -44,7 +44,3 @@ func Redirect(c *fiber.Ctx) error {
 	}
 	return c.Redirect(originalURL, http.StatusTemporaryRedirect)
 }
-
-func RenderHomePage(c *fiber.Ctx) error {
-	return c.Render("index", fiber.Map{"Title": "URL Shortener"})
-}
