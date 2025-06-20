@@ -1,0 +1,1 @@
+CREATE TABLE url_shortener (code TEXT PRIMARY KEY, url TEXT NOT NULL);

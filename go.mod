@@ -2,7 +2,10 @@ module github.com/kpriyanshu2003/url-shortener
 
 go 1.24.3
 
-require github.com/gofiber/fiber/v2 v2.52.8
+require (
+	github.com/gofiber/fiber/v2 v2.52.8
+	github.com/lib/pq v1.10.9
+)
 
 require (
 	github.com/andybalholm/brotli v1.1.1 // indirect
