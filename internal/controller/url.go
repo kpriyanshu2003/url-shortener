@@ -4,10 +4,10 @@ import (
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/kpriyanshu2003/url-shortener/internal/database"
 	"github.com/kpriyanshu2003/url-shortener/internal/model"
+	"github.com/kpriyanshu2003/url-shortener/internal/utils"
 )
-
-var urlStore = make(map[string]string) // temp store
 
 func ShortenURL(c *fiber.Ctx) error {
 	var payload model.URLMapping
@@ -17,16 +17,36 @@ func ShortenURL(c *fiber.Ctx) error {
 
 	if payload.URL == "" {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"error": "Iriginal URL is required",
+			"error": "URL is required",
 		})
 	}
 	if payload.Code == "" {
-		// Generate a random code if not provided
-		payload.Code = "short" // This should be replaced with a proper random code generation logic
+		code, err := utils.GenerateUniqueCode()
+		if err != nil {
+			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+				"error": "Failed to generate unique code",
+			})
+		}
+		payload.Code = code
 	}
 
-	// DB interaction
-	urlStore[payload.Code] = payload.URL
+	exists, err := database.CodeExists(payload.Code)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": "Database error",
+		})
+	}
+	if exists {
+		return c.Status(fiber.StatusConflict).JSON(fiber.Map{
+			"error": "Short URL code already exists",
+		})
+	}
+
+	if err := database.InsertURL(payload); err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": "Failed to insert URL into database",
+		})
+	}
 
 	return c.Status(http.StatusCreated).JSON(fiber.Map{
 		"short_url":    "/" + payload.Code,
@@ -37,10 +57,17 @@ func ShortenURL(c *fiber.Ctx) error {
 func Redirect(c *fiber.Ctx) error {
 	code := c.Params("code")
 
-	// DB interaction
-	originalURL, found := urlStore[code]
-	if !found {
-		return c.Status(fiber.StatusNotFound).SendString("Short URL not found")
+	url, err := database.GetOriginalURL(code)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"error": "Database error",
+		})
 	}
-	return c.Redirect(originalURL, http.StatusTemporaryRedirect)
+	if url == "" {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"error": "Short URL not found",
+		})
+	}
+
+	return c.Redirect(url, http.StatusTemporaryRedirect)
 }

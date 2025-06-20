@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/kpriyanshu2003/url-shortener/internal/utils"
+	"github.com/kpriyanshu2003/url-shortener/internal/config"
 	_ "github.com/lib/pq"
 )
 
@@ -14,11 +14,11 @@ var DB *sql.DB
 func Init() {
 	connStr := fmt.Sprintf(
 		"host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
-		utils.GetEnv("PG_HOST", "localhost"),
-		utils.GetEnv("PG_PORT", "5432"),
-		utils.GetEnv("PG_USER", "postgres"),
-		utils.GetEnv("PG_PASSWORD", "admin"),
-		utils.GetEnv("PG_DB_NAME", "url_shortener"),
+		config.GetEnv("PG_HOST", "localhost"),
+		config.GetEnv("PG_PORT", "5432"),
+		config.GetEnv("PG_USER", "postgres"),
+		config.GetEnv("PG_PASSWORD", "admin"),
+		config.GetEnv("PG_DB_NAME", "postgres"),
 	)
 
 	var err error

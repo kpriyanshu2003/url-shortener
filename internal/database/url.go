@@ -7,9 +7,9 @@ import (
 )
 
 const (
-	_insertURL       = "INSERT INTO url_mappings (code, original) VALUES ($1, $2)"
-	_getOriginalURL  = "SELECT original FROM url_mappings WHERE code = $1"
-	_checkCodeExists = "SELECT EXISTS(SELECT 1 FROM url_mappings WHERE code = $1)"
+	_insertURL       = "INSERT INTO url_shortener (code, url) VALUES ($1, $2)"
+	_getOriginalURL  = "SELECT url FROM url_shortener WHERE code = $1"
+	_checkCodeExists = "SELECT EXISTS(SELECT 1 FROM url_shortener WHERE code = $1)"
 )
 
 func InsertURL(mapping model.URLMapping) error {
@@ -18,13 +18,13 @@ func InsertURL(mapping model.URLMapping) error {
 }
 
 func GetOriginalURL(code string) (string, error) {
-	var original string
-	err := DB.QueryRow(_getOriginalURL, code).Scan(&original)
+	var url string
+	err := DB.QueryRow(_getOriginalURL, code).Scan(&url)
 
 	if err == sql.ErrNoRows {
 		return "", nil
 	}
-	return original, err
+	return url, err
 }
 
 func CodeExists(code string) (bool, error) {
