@@ -1,1 +1,3 @@
-https://www.postman.com/infinitybridge/workspace/public-projects/collection/29585525-d43f3b5a-cdbb-43cf-90ec-7c9dea633cfd?action=share&creator=29585525&active-environment=29585525-32f3e8d3-eddd-477f-b3f4-9dcd53c5cc8e
+# URL Shortener
+
+Probably not the best but it works. 
