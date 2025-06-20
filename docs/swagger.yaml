@@ -1,0 +1,101 @@
+basePath: /
+definitions:
+  model.URLMapping:
+    properties:
+      code:
+        type: string
+      url:
+        type: string
+    type: object
+host: localhost:3300
+info:
+  contact: {}
+  description: A simple URL shortener service
+  title: URL Shortener API
+  version: "1.0"
+paths:
+  /:
+    get:
+      description: Serves the index.html from public directory
+      produces:
+      - text/html
+      responses:
+        "200":
+          description: HTML page
+          schema:
+            type: string
+      summary: Render homepage
+      tags:
+      - Static
+    post:
+      consumes:
+      - application/json
+      description: Generates a short URL code for the given long URL. If no code is
+        provided, one is generated.
+      parameters:
+      - description: Original URL and optional custom code
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/model.URLMapping'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "409":
+          description: Conflict
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Create a short URL
+      tags:
+      - URL
+  /{code}:
+    get:
+      description: Redirects a short code to the corresponding original URL
+      parameters:
+      - description: Short code
+        in: path
+        name: code
+        required: true
+        type: string
+      produces:
+      - text/plain
+      responses:
+        "302":
+          description: Found
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Redirect to original URL
+      tags:
+      - URL
+swagger: "2.0"

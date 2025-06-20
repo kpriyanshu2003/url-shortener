@@ -3,6 +3,9 @@ package main
 import (
 	"log"
 
+	_ "github.com/kpriyanshu2003/url-shortener/docs"
+	swagger "github.com/swaggo/fiber-swagger"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/recover"
@@ -11,6 +14,18 @@ import (
 	"github.com/kpriyanshu2003/url-shortener/internal/database"
 )
 
+// @title           URL Shortener API
+// @version         1.0
+// @description     A simple URL shortener service
+// @host            localhost:3300
+// @BasePath        /
+
+// @Summary      Render homepage
+// @Description  Serves the index.html from public directory
+// @Tags         Static
+// @Produce      html
+// @Success      200  {string}  string  "HTML page"
+// @Router       / [get]
 func main() {
 	database.Init()
 	app := fiber.New()
@@ -22,6 +37,7 @@ func main() {
 
 	app.Post("/", controller.ShortenURL)
 	app.Get("/:code", controller.Redirect)
+	app.Get("/swagger/*", swagger.WrapHandler)
 
 	log.Fatal(app.Listen(":" + config.GetEnv("PORT", "3300")))
 }

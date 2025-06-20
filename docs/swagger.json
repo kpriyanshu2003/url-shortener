@@ -1,0 +1,152 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "A simple URL shortener service",
+        "title": "URL Shortener API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:3300",
+    "basePath": "/",
+    "paths": {
+        "/": {
+            "get": {
+                "description": "Serves the index.html from public directory",
+                "produces": [
+                    "text/html"
+                ],
+                "tags": [
+                    "Static"
+                ],
+                "summary": "Render homepage",
+                "responses": {
+                    "200": {
+                        "description": "HTML page",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Generates a short URL code for the given long URL. If no code is provided, one is generated.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "URL"
+                ],
+                "summary": "Create a short URL",
+                "parameters": [
+                    {
+                        "description": "Original URL and optional custom code",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.URLMapping"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{code}": {
+            "get": {
+                "description": "Redirects a short code to the corresponding original URL",
+                "produces": [
+                    "text/plain"
+                ],
+                "tags": [
+                    "URL"
+                ],
+                "summary": "Redirect to original URL",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Short code",
+                        "name": "code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "302": {
+                        "description": "Found"
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.URLMapping": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

@@ -9,6 +9,18 @@ import (
 	"github.com/kpriyanshu2003/url-shortener/internal/utils"
 )
 
+// ShortenURL godoc
+// @Summary      Create a short URL
+// @Description  Generates a short URL code for the given long URL. If no code is provided, one is generated.
+// @Tags         URL
+// @Accept       json
+// @Produce      json
+// @Param        payload  body      model.URLMapping  true  "Original URL and optional custom code"
+// @Success      201      {object}  map[string]string
+// @Failure      400      {object}  map[string]string
+// @Failure      409      {object}  map[string]string
+// @Failure      500      {object}  map[string]string
+// @Router       / [post]
 func ShortenURL(c *fiber.Ctx) error {
 	var payload model.URLMapping
 	if err := c.BodyParser(&payload); err != nil {
@@ -54,6 +66,16 @@ func ShortenURL(c *fiber.Ctx) error {
 	})
 }
 
+// Redirect godoc
+// @Summary      Redirect to original URL
+// @Description  Redirects a short code to the corresponding original URL
+// @Tags         URL
+// @Produce      plain
+// @Param        code  path      string  true  "Short code"
+// @Success      302
+// @Failure      404  {object}  map[string]string
+// @Failure      500  {object}  map[string]string
+// @Router       /{code} [get]
 func Redirect(c *fiber.Ctx) error {
 	code := c.Params("code")
 

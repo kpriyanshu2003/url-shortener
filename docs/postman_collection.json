@@ -1,0 +1,376 @@
+{
+	"info": {
+		"_postman_id": "d43f3b5a-cdbb-43cf-90ec-7c9dea633cfd",
+		"name": "URL Shortener",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29585525",
+		"_collection_link": "https://www.postman.com/infinitybridge/workspace/public-projects/collection/29585525-d43f3b5a-cdbb-43cf-90ec-7c9dea633cfd?action=share&source=collection_link&creator=29585525"
+	},
+	"item": [
+		{
+			"name": "Home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Home",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}",
+							"host": [
+								"{{base_url}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 19:44:58 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2349"
+						},
+						{
+							"key": "Last-Modified",
+							"value": "Fri, 20 Jun 2025 19:44:30 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"UTF-8\" />\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n        <meta name=\"description\" content=\"LinkShort - A simple URL shortener\" />\n        <meta name=\"keywords\" content=\"URL, shortener, link, shorten, web app\" />\n        <meta name=\"author\" content=\"Kumar Priyanshu\" />\n        <meta name=\"theme-color\" content=\"#4CAF50\" />\n        <title>LinkShort - URL Shortener</title>\n        <link rel=\"icon\" href=\"./favicon.ico\" type=\"image/x-icon\" />\n        <link rel=\"stylesheet\" href=\"./style.css\" />\n        <script src=\"./script.js\" defer></script>\n    </head>\n    <body>\n        <div class=\"container\">\n            <div class=\"logo\">LinkShort</div>\n            <div class=\"subtitle\">Shorten your URLs with style</div>\n            <div class=\"input-group\">\n                <input\n          type=\"url\"\n          class=\"url-input\"\n          placeholder=\"Enter your long URL here...\"\n          id=\"urlInput\"\n        />\n            </div>\n            <button class=\"shorten-btn\" onclick=\"shortenUrl()\">Shorten URL</button>\n            <div class=\"result\" id=\"result\">\n                <div class=\"result-label\">Shortened URL:</div>\n                <div class=\"result-content\">\n                    <div class=\"short-url\" id=\"shortUrl\"></div>\n                    <button class=\"copy-btn\" onclick=\"copyToClipboard()\" id=\"copyBtn\">\n                        <svg\n              xmlns=\"http://www.w3.org/2000/svg\"\n              width=\"24\"\n              height=\"24\"\n              viewBox=\"0 0 24 24\"\n            >\n                            <path\n                fill=\"currentColor\"\n                d=\"M6.6 11.397c0-2.726 0-4.089.843-4.936c.844-.847 2.201-.847 4.917-.847h2.88c2.715 0 4.073 0 4.916.847c.844.847.844 2.21.844 4.936v4.82c0 2.726 0 4.089-.844 4.936c-.843.847-2.201.847-4.916.847h-2.88c-2.716 0-4.073 0-4.917-.847s-.843-2.21-.843-4.936z\"\n              />\n                            <path\n                fill=\"currentColor\"\n                d=\"M4.172 3.172C3 4.343 3 6.229 3 10v2c0 3.771 0 5.657 1.172 6.828c.617.618 1.433.91 2.62 1.048c-.192-.84-.192-1.996-.192-3.66v-4.819c0-2.726 0-4.089.843-4.936c.844-.847 2.201-.847 4.917-.847h2.88c1.652 0 2.8 0 3.638.19c-.138-1.193-.43-2.012-1.05-2.632C16.657 2 14.771 2 11 2S5.343 2 4.172 3.172\"\n                opacity=\"0.5\"\n              />\n                        </svg>\n                    </button>\n                </div>\n            </div>\n        </div>\n        <div id=\"snackbar\"></div>\n    </body>\n</html>"
+				}
+			]
+		},
+		{
+			"name": "Shorten",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"google\",\r\n    \"url\": \"https://www.google.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}",
+					"host": [
+						"{{base_url}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"google\",\r\n    \"url\": \"https://www.google.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}",
+							"host": [
+								"{{base_url}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 18:58:18 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "63"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"original_url\": \"https://www.google.com\",\n    \"short_url\": \"/google\"\n}"
+				},
+				{
+					"name": "Code Already Exists",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"google\",\r\n    \"url\": \"https://www.google.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}",
+							"host": [
+								"{{base_url}}"
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 18:58:55 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "41"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Short URL code already exists\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Redirect",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/:code",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						":code"
+					],
+					"variable": [
+						{
+							"key": "code",
+							"value": "apple"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Code Exists",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/:code",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								":code"
+							],
+							"variable": [
+								{
+									"key": "code",
+									"value": "google"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": ":status",
+							"value": 200
+						},
+						{
+							"key": "date",
+							"value": "Fri, 20 Jun 2025 18:58:31 GMT"
+						},
+						{
+							"key": "expires",
+							"value": "-1"
+						},
+						{
+							"key": "cache-control",
+							"value": "private, max-age=0"
+						},
+						{
+							"key": "content-type",
+							"value": "text/html; charset=ISO-8859-1"
+						},
+						{
+							"key": "content-security-policy-report-only",
+							"value": "object-src 'none';base-uri 'self';script-src 'nonce--pcPNm5Z6tFN1S__hbGGqQ' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp"
+						},
+						{
+							"key": "accept-ch",
+							"value": "Sec-CH-Prefers-Color-Scheme"
+						},
+						{
+							"key": "content-encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "server",
+							"value": "gws"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "0"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "<!doctype html><html itemscope=\"\" itemtype=\"http://schema.org/WebPage\" lang=\"en-IN\"><head><meta content=\"text/html; charset=UTF-8\" http-equiv=\"Content-Type\"><meta content=\"/images/branding/googleg/1x/googleg_standard_color_128dp.png\" itemprop=\"image\"><title>Google</title><script nonce=\"-pcPNm5Z6tFN1S__hbGGqQ\">(function(){var _g={kEI:'V69VaN2GK_e00-kPy6SbqQg',kEXPI:'0,202791,53,10,2,610013,2887446,1069,448529,90132,48791,46127,344796,219813,27506,42725,11106,5230576,430,4,36812208,25340903,26046,14110,4563,60612,6750,23879,9138,4600,328,6225,1117,49458,3614,9976,15048,49,8157,3292,4134,30379,28334,52954,1258,352,5000,2,5,2,13871,5870,3100,4614,5774,16301,494,8154,7,2655,3050,2,13472,3261,2990,35,3420,2864,5082,5538,12107,656,3050,1977,3605,7327,4086,1733,4,4621,2731,2406,4025,120,2,3546,5801,647,1889,2,4,1604,723,4,4,2047,1511,1253,374,561,3,984,203,283,1,2781,1092,267,4,1466,1163,3049,623,1,756,1841,866,2,82,817,399,29,327,867,537,4,640,402,80,7,1378,365,236,753,121,158,1220,359,3285,1226,347,1213,1926,835,619,792,607,423,940,761,169,1457,519,2127,103,4,1,266,75,6,4070,1006,235,432,27,3,1325,985,7,155,528,2,2248,107,1654,92,140,1713,770,475,1446,4,2,2,1,132,13,456,136,594,646,41,591,634,72,497,522,6,436,307,558,468,143,3,107,8,332,6,2274,117,253,574,934,398,808,520,68,116,3044,2124,855,2,2,1,2,2,2,2,3,1,2,3,2,2,1,2,2,2,3,1,2,2,2,2,2,3,1,3,2,2,2,2,2,1,3,1,3,1,3,2,2,1,2,3,1,3,1,2,3,1,3,2,1,3,2,2,1,3,2,2,2,2,2,1,2,3,2,1,2,2,2,2,2,3,1,2,3,1,2,3,2,1,2,3,1,2,3,2,1,3,1,2,2,2,3,2,1,3,2,1,2,3,1,3,1,2,3,1,2,3,2,1,3,2,1,3,1,3,1,2,3,1,3,2,2,1,2,2,2,3,1,3,2,1,3,1,3,1,3,1,2,2,3,2,2,1,2,3,1,2,3,1,3,1,3,2,1,3,2,2,1,2,3,1,2,3,2,1,3,2,2,2,1,2,3,2,1,3,2,2,1,3,2,1,3,2,1,2,3,1,3,2,2,989,213,28,901,223,129,407,183,2,1,618,498,263,95,20,540,62,188,450,549,24,24,24,160,2,2,105,73,672,216,821,144,67,858,338,110,564,464,102,174,395,146,150,741,87,570,170,483,129,128,14,25,188,4,236,4,905,139,350,3,261,16,132,24,154,241,21,230,499,167,57,230,597,3,12,1,247,147,229,61,20,2,18,6,667,3,522,12,1678,1630,85,242,372,1654,529,148,5,1538,1158,21245382,5,2253,739,4,2960,3,1272,36,167,1369,393,780,316,15,711,3432,2,1461,12,261,1982,291,3,167,552,73,63,935,3,184,9,1072,3629256,2391429,2473307,474940',kBL:'XwKI',kOPI:89978449};(function(){var a;((a=window.google)==null?0:a.stvsc)?google.kEI=_g.kEI:window.google=_g;}).call(this);})();(function(){google.sn='webhp';google.kHL='en-IN';})();(function(){\nvar g=this||self;function k(){return window.google&&window.google.kOPI||null};var l,m=[];function n(a){for(var b;a&&(!a.getAttribute||!(b=a.getAttribute(\"eid\")));)a=a.parentNode;return b||l}function p(a){for(var b=null;a&&(!a.getAttribute||!(b=a.getAttribute(\"leid\")));)a=a.parentNode;return b}function q(a){/^http:/i.test(a)&&window.location.protocol===\"https:\"&&(google.ml&&google.ml(Error(\"a\"),!1,{src:a,glmm:1}),a=\"\");return a}\nfunction r(a,b,d,c,h){var e=\"\";b.search(\"&ei=\")===-1&&(e=\"&ei=\"+n(c),b.search(\"&lei=\")===-1&&(c=p(c))&&(e+=\"&lei=\"+c));var f=b.search(\"&cshid=\")===-1&&a!==\"slh\";c=\"&zx=\"+Date.now().toString();g._cshid&&f&&(c+=\"&cshid=\"+g._cshid);(d=d())&&(c+=\"&opi=\"+d);return\"/\"+(h||\"gen_204\")+\"?atyp=i&ct=\"+String(a)+\"&cad=\"+(b+e+c)};l=google.kEI;google.getEI=n;google.getLEI=p;google.ml=function(){return null};google.log=function(a,b,d,c,h,e){e=e===void 0?k:e;d||(d=r(a,b,e,c,h));if(d=q(d)){a=new Image;var f=m.length;m[f]=a;a.onerror=a.onload=a.onabort=function(){delete m[f]};a.src=d}};google.logUrl=function(a,b){b=b===void 0?k:b;return r(\"\",a,b)};}).call(this);(function(){google.y={};google.sy=[];var d;(d=google).x||(d.x=function(a,b){if(a)var c=a.id;else{do c=Math.random();while(google.y[c])}google.y[c]=[a,b];return!1});var e;(e=google).sx||(e.sx=function(a){google.sy.push(a)});google.lm=[];var f;(f=google).plm||(f.plm=function(a){google.lm.push.apply(google.lm,a)});google.lq=[];var g;(g=google).load||(g.load=function(a,b,c){google.lq.push([[a],b,c])});var h;(h=google).loadAll||(h.loadAll=function(a,b){google.lq.push([a,b])});google.bx=!1;var k;(k=google).lx||(k.lx=function(){});var l=[],m;(m=google).fce||(m.fce=function(a,b,c,n){l.push([a,b,c,n])});google.qce=l;}).call(this);google.f={};(function(){\ndocument.documentElement.addEventListener(\"submit\",function(b){var a;if(a=b.target){var c=a.getAttribute(\"data-submitfalse\");a=c===\"1\"||c===\"q\"&&!a.elements.q.value?!0:!1}else a=!1;a&&(b.preventDefault(),b.stopPropagation())},!0);document.documentElement.addEventListener(\"click\",function(b){var a;a:{for(a=b.target;a&&a!==document.documentElement;a=a.parentElement)if(a.tagName===\"A\"){a=a.getAttribute(\"data-nohref\")===\"1\";break a}a=!1}a&&b.preventDefault()},!0);}).call(this);</script><style>#gbar,#guser{font-size:13px;padding-top:1px !important;}#gbar{height:22px}#guser{padding-bottom:7px !important;text-align:right}.gbh,.gbd{border-top:1px solid #c9d7f1;font-size:1px}.gbh{height:0;position:absolute;top:24px;width:100%}@media all{.gb1{height:22px;margin-right:.5em;vertical-align:top}#gbar{float:left}}a.gb1,a.gb4{text-decoration:underline !important}a.gb1,a.gb4{color:#00c !important}.gbi .gb4{color:#dd8e27 !important}.gbf .gb4{color:#900 !important}\n</style><style>body,td,a,p,.h{font-family:sans-serif}body{margin:0;overflow-y:scroll}#gog{padding:3px 8px 0}td{line-height:.8em}.gac_m td{line-height:17px}form{margin-bottom:20px}.h{color:#1967d2}em{font-weight:bold;font-style:normal}.lst{height:25px;width:496px}.gsfi,.lst{font:18px sans-serif}.gsfs{font:17px sans-serif}.ds{display:inline-box;display:inline-block;margin:3px 0 4px;margin-left:4px}input{font-family:inherit}body{background:#fff;color:#000}a{color:#681da8;text-decoration:none}a:hover,a:active{text-decoration:underline}.fl a{color:#1967d2}a:visited{color:#681da8}.sblc{padding-top:5px}.sblc a{display:block;margin:2px 0;margin-left:13px;font-size:11px}.lsbb{background:#f8f9fa;border:solid 1px;border-color:#dadce0 #70757a #70757a #dadce0;height:30px}.lsbb{display:block}#WqQANb a{display:inline-block;margin:0 12px}.lsb{background:url(/images/nav_logo229.png) 0 -261px repeat-x;color:#000;border:none;cursor:pointer;height:30px;margin:0;outline:0;font:15px sans-serif;vertical-align:top}.lsb:active{background:#dadce0}.lst:focus{outline:none}</style><script nonce=\"-pcPNm5Z6tFN1S__hbGGqQ\">(function(){window.google.erd={jsr:1,bv:2239,de:true,dpf:'X6TJxN3vm5dRijVweAm1iQeznuW6HqvSrINB7BICqtw'};\nvar g=this||self;var k,l=(k=g.mei)!=null?k:1,m,p=(m=g.diel)!=null?m:0,q,r=(q=g.sdo)!=null?q:!0,t=0,u,w=google.erd,x=w.jsr;google.ml=function(a,b,d,n,e){e=e===void 0?2:e;b&&(u=a&&a.message);d===void 0&&(d={});d.cad=\"ple_\"+google.ple+\".aple_\"+google.aple;if(google.dl)return google.dl(a,e,d,!0),null;b=d;if(x<0){window.console&&console.error(a,b);if(x===-2)throw a;b=!1}else b=!a||!a.message||a.message===\"Error loading script\"||t>=l&&!n?!1:!0;if(!b)return null;t++;d=d||{};b=encodeURIComponent;var c=\"/gen_204?atyp=i&ei=\"+b(google.kEI);google.kEXPI&&(c+=\"&jexpid=\"+b(google.kEXPI));c+=\"&srcpg=\"+b(google.sn)+\"&jsr=\"+b(w.jsr)+\n\"&bver=\"+b(w.bv);w.dpf&&(c+=\"&dpf=\"+b(w.dpf));var f=a.lineNumber;f!==void 0&&(c+=\"&line=\"+f);var h=a.fileName;h&&(h.indexOf(\"-extension:/\")>0&&(e=3),c+=\"&script=\"+b(h),f&&h===window.location.href&&(f=document.documentElement.outerHTML.split(\"\\n\")[f],c+=\"&cad=\"+b(f?f.substring(0,300):\"No script found.\")));google.ple&&google.ple===1&&(e=2);c+=\"&jsel=\"+e;for(var v in d)c+=\"&\",c+=b(v),c+=\"=\",c+=b(d[v]);c=c+\"&emsg=\"+b(a.name+\": \"+a.message);c=c+\"&jsst=\"+b(a.stack||\"N/A\");c.length>=12288&&(c=c.substr(0,12288));a=c;n||google.log(0,\"\",a);return a};window.onerror=function(a,b,d,n,e){u!==a&&(a=e instanceof Error?e:Error(a),d===void 0||\"lineNumber\"in a||(a.lineNumber=d),b===void 0||\"fileName\"in a||(a.fileName=b),google.ml(a,!1,void 0,!1,a.name===\"SyntaxError\"||a.message.substring(0,11)===\"SyntaxError\"||a.message.indexOf(\"Script error\")!==-1?3:p));u=null;r&&t>=l&&(window.onerror=null)};})();</script></head><body bgcolor=\"#fff\"><script nonce=\"-pcPNm5Z6tFN1S__hbGGqQ\">(function(){var src='/images/nav_logo229.png';var iesg=false;document.body.onload = function(){window.n && window.n();if (document.images){new Image().src=src;}\nif (!iesg){document.f&&document.f.q.focus();document.gbqf&&document.gbqf.q.focus();}\n}\n})();</script><div id=\"mngb\"><div id=gbar><nobr><b class=gb1>Search</b><a class=gb1 href=\"https://www.google.com/imghp?hl=en&tab=wi\">Images</a><a class=gb1 href=\"https://maps.google.co.in/maps?hl=en&tab=wl\">Maps</a><a class=gb1 href=\"https://play.google.com/?hl=en&tab=w8\">Play</a><a class=gb1 href=\"https://www.youtube.com/?tab=w1\">YouTube</a><a class=gb1 href=\"https://news.google.com/?tab=wn\">News</a><a class=gb1 href=\"https://mail.google.com/mail/?tab=wm\">Gmail</a><a class=gb1 href=\"https://drive.google.com/?tab=wo\">Drive</a><a class=gb1 style=\"text-decoration:none\" href=\"https://www.google.co.in/intl/en/about/products?tab=wh\"><u>More</u> &raquo;</a></nobr></div><div id=guser width=100%><nobr><span id=gbn class=gbi></span><span id=gbf class=gbf></span><span id=gbe></span><a href=\"http://www.google.co.in/history/optout?hl=en\" class=gb4>Web History</a> |<a  href=\"/preferences?hl=en\" class=gb4>Settings</a> |<a target=_top id=gb_70 href=\"https://accounts.google.com/ServiceLogin?hl=en&passive=true&continue=https://www.google.com/&ec=GAZAAQ\" class=gb4>Sign in</a></nobr></div><div class=gbh style=left:0></div><div class=gbh style=right:0></div></div><center><br clear=\"all\" id=\"lgpd\"><div id=\"XjhHGf\"><img alt=\"Google\" height=\"92\" src=\"/images/branding/googlelogo/1x/googlelogo_white_background_color_272x92dp.png\" style=\"padding:28px 0 14px\" width=\"272\" id=\"hplogo\"><br><br></div><form action=\"/search\" name=\"f\"><table cellpadding=\"0\" cellspacing=\"0\"><tr valign=\"top\"><td width=\"25%\">&nbsp;</td><td align=\"center\" nowrap=\"\"><input name=\"ie\" value=\"ISO-8859-1\" type=\"hidden\"><input value=\"en-IN\" name=\"hl\" type=\"hidden\"><input name=\"source\" type=\"hidden\" value=\"hp\"><input name=\"biw\" type=\"hidden\"><input name=\"bih\" type=\"hidden\"><div class=\"ds\" style=\"height:32px;margin:4px 0\"><input class=\"lst\" style=\"margin:0;padding:5px 8px 0 6px;vertical-align:top;color:#000\" autocomplete=\"off\" value=\"\" title=\"Google Search\" maxlength=\"2048\" name=\"q\" size=\"57\"></div><br style=\"line-height:0\"><span class=\"ds\"><span class=\"lsbb\"><input class=\"lsb\" value=\"Google Search\" name=\"btnG\" type=\"submit\"></span></span><span class=\"ds\"><span class=\"lsbb\"><input class=\"lsb\" id=\"tsuid_V69VaN2GK_e00-kPy6SbqQg_1\" value=\"I'm Feeling Lucky\" name=\"btnI\" type=\"submit\"><script nonce=\"-pcPNm5Z6tFN1S__hbGGqQ\">(function(){var id='tsuid_V69VaN2GK_e00-kPy6SbqQg_1';document.getElementById(id).onclick = function(){if (this.form.q.value){this.checked = 1;if (this.form.iflsig)this.form.iflsig.disabled = false;}\nelse top.location='/doodles/';};})();</script><input value=\"AOw8s4IAAAAAaFW9Zwscb7gP_MkY4Vzvl3AcuHfPMMuI\" name=\"iflsig\" type=\"hidden\"></span></span></td><td class=\"fl sblc\" align=\"left\" nowrap=\"\" width=\"25%\"><a href=\"/advanced_search?hl=en-IN&amp;authuser=0\">Advanced search</a></td></tr></table><input id=\"gbv\" name=\"gbv\" type=\"hidden\" value=\"1\"><script nonce=\"-pcPNm5Z6tFN1S__hbGGqQ\">(function(){var a,b=\"1\";if(document&&document.getElementById)if(typeof XMLHttpRequest!=\"undefined\")b=\"2\";else if(typeof ActiveXObject!=\"undefined\"){var c,d,e=[\"MSXML2.XMLHTTP.6.0\",\"MSXML2.XMLHTTP.3.0\",\"MSXML2.XMLHTTP\",\"Microsoft.XMLHTTP\"];for(c=0;d=e[c++];)try{new ActiveXObject(d),b=\"2\"}catch(h){}}a=b;if(a==\"2\"&&location.search.indexOf(\"&gbv=2\")==-1){var f=google.gbvu,g=document.getElementById(\"gbv\");g&&(g.value=a);f&&window.setTimeout(function(){location.href=f},0)};}).call(this);</script></form><div style=\"font-size:83%;min-height:3.5em\"><br><div id=\"gws-output-pages-elements-homepage_additional_languages__als\"><style>#gws-output-pages-elements-homepage_additional_languages__als{font-size:small;margin-bottom:24px}#SIvCob{color:#545454;display:inline-block;line-height:28px;}#SIvCob a{}.H6sW5{display:inline-block;margin:0 2px;white-space:nowrap}.z4hgWe{display:inline-block;margin:0 2px}</style><div id=\"SIvCob\">Google offered in:  <a href=\"https://www.google.com/setprefs?sig=0_o1RojSUPPX4hAZd63sArTYFFz-4%3D&amp;hl=hi&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwidjpCW14COAxV32jQHHUvSJoUQ2ZgBCAY\">&#2361;&#2367;&#2344;&#2381;&#2342;&#2368;</a><a href=\"https://www.google.com/setprefs?sig=0_o1RojSUPPX4hAZd63sArTYFFz-4%3D&amp;hl=bn&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwidjpCW14COAxV32jQHHUvSJoUQ2ZgBCAc\">&#2476;&#2494;&#2434;&#2482;&#2494;</a><a href=\"https://www.google.com/setprefs?sig=0_o1RojSUPPX4hAZd63sArTYFFz-4%3D&amp;hl=te&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwidjpCW14COAxV32jQHHUvSJoUQ2ZgBCAg\">&#3108;&#3142;&#3122;&#3137;&#3095;&#3137;</a><a href=\"https://www.google.com/setprefs?sig=0_o1RojSUPPX4hAZd63sArTYFFz-4%3D&amp;hl=mr&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwidjpCW14COAxV32jQHHUvSJoUQ2ZgBCAk\">&#2350;&#2352;&#2366;&#2336;&#2368;</a><a href=\"https://www.google.com/setprefs?sig=0_o1RojSUPPX4hAZd63sArTYFFz-4%3D&amp;hl=ta&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwidjpCW14COAxV32jQHHUvSJoUQ2ZgBCAo\">&#2980;&#2990;&#3007;&#2996;&#3021;</a><a href=\"https://www.google.com/setprefs?sig=0_o1RojSUPPX4hAZd63sArTYFFz-4%3D&amp;hl=gu&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwidjpCW14COAxV32jQHHUvSJoUQ2ZgBCAs\">&#2711;&#2753;&#2716;&#2736;&#2750;&#2724;&#2752;</a><a href=\"https://www.google.com/setprefs?sig=0_o1RojSUPPX4hAZd63sArTYFFz-4%3D&amp;hl=kn&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwidjpCW14COAxV32jQHHUvSJoUQ2ZgBCAw\">&#3221;&#3240;&#3277;&#3240;&#3233;</a><a href=\"https://www.google.com/setprefs?sig=0_o1RojSUPPX4hAZd63sArTYFFz-4%3D&amp;hl=ml&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwidjpCW14COAxV32jQHHUvSJoUQ2ZgBCA0\">&#3374;&#3378;&#3375;&#3390;&#3379;&#3330;</a><a href=\"https://www.google.com/setprefs?sig=0_o1RojSUPPX4hAZd63sArTYFFz-4%3D&amp;hl=pa&amp;source=homepage&amp;sa=X&amp;ved=0ahUKEwidjpCW14COAxV32jQHHUvSJoUQ2ZgBCA4\">&#2602;&#2672;&#2588;&#2622;&#2604;&#2624;</a></div></div></div><span id=\"footer\"><div style=\"font-size:10pt\"><div style=\"margin:19px auto;text-align:center\" id=\"WqQANb\"><a href=\"/intl/en/ads/\">Advertising</a><a href=\"http://www.google.co.in/services/\">Business Solutions</a><a href=\"/intl/en/about.html\">About Google</a><a href=\"https://www.google.com/setprefdomain?prefdom=IN&amp;prev=https://www.google.co.in/&amp;sig=K_KToErlkhMYEO5grnPeDTHom5tsw%3D\">Google.co.in</a></div></div><p style=\"font-size:8pt;color:#636363\">&copy; 2025 - <a href=\"/intl/en/policies/privacy/\">Privacy</a> -<a href=\"/intl/en/policies/terms/\">Terms</a></p></span></center><script nonce=\"-pcPNm5Z6tFN1S__hbGGqQ\">(function(){window.google.cdo={height:757,width:1440};(function(){var a=window.innerWidth,b=window.innerHeight;if(!a||!b){var c=window.document,d=c.compatMode==\"CSS1Compat\"?c.documentElement:c.body;a=d.clientWidth;b=d.clientHeight}if(a&&b&&(a!=google.cdo.width||b!=google.cdo.height)){var e=google,f=e.log,g=\"/client_204?&atyp=i&biw=\"+a+\"&bih=\"+b+\"&ei=\"+google.kEI,h=\"\",k=window.google&&window.google.kOPI||null;k&&(h+=\"&opi=\"+k);f.call(e,\"\",\"\",g+h)};}).call(this);})();(function(){google.xjs={basecomb:'/xjs/_/js/k\\x3dxjs.hp.en.Th2lrdlGm-g.es5.O/ck\\x3dxjs.hp.q8l7QQFs7p8.L.X.O/am\\x3dAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAACUAAQAAAJggAAAAAAACAAAAAAAAAACAEAAAAgAggAAAAICSBMA4EABgAQBKIABygNIDAAACgAAAAAgAEAAAABACACAAAEDACQAAADAAwuOAAAAAQEAsAAgAAAAgHgE/d\\x3d1/ed\\x3d1/dg\\x3d0/ujg\\x3d1/rs\\x3dACT90oFS7Es74rYwhtBC8YpS-35SIKYXtQ',basecss:'/xjs/_/ss/k\\x3dxjs.hp.q8l7QQFs7p8.L.X.O/am\\x3dAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAACUAAQAAABggAAAAAAAAAAAAAAAAAAAAEAAAAgAggAAAAICSAMAAAABgAQBKIABygNIDAAACgAAAAAgAEAAAABACACAAAEDACAAAAAAAAAAAAAAAQEAE/rs\\x3dACT90oEUYcHNcmPhbNNuaN8DChx6MaH7xA',basejs:'/xjs/_/js/k\\x3dxjs.hp.en.Th2lrdlGm-g.es5.O/am\\x3dAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAACAAAAAAAAAACAEAAAAgAAAAAAAAAABAA4EABAAQAAAABwAAAAAAAAgAAAAAAAAAAAAAAAAAAAAADAAQAAADAAwuOAAAAAQEAsAAgAAAAgHgE/dg\\x3d0/rs\\x3dACT90oGB7FFtPRS0DH7qQgGt78eZkP8fjw',excm:[]};})();(function(){var u='/xjs/_/js/k\\x3dxjs.hp.en.Th2lrdlGm-g.es5.O/am\\x3dAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAACAAAAAAAAAACAEAAAAgAAAAAAAAAABAA4EABAAQAAAABwAAAAAAAAgAAAAAAAAAAAAAAAAAAAAADAAQAAADAAwuOAAAAAQEAsAAgAAAAgHgE/d\\x3d1/ed\\x3d1/dg\\x3d3/rs\\x3dACT90oGB7FFtPRS0DH7qQgGt78eZkP8fjw/m\\x3dsb_he,d';var st=1;var amd=1000;var mmd=0;var pod=true;var pop=true;var povp=false;var fp='';\nvar e=this||self;function f(){var b,a,d;if(a=b=(a=window.google)==null?void 0:(d=a.ia)==null?void 0:d.r.B2Jtyd)a=b.m,a=a===1||a===5;return a&&b.cbfd!=null&&b.cbvi!=null?b:void 0};function g(){var b=[u];if(!google.dp){for(var a=0;a<b.length;a++){var d=b[a],c=document.createElement(\"link\");c.as=\"script\";c.href=d;c.rel=\"preload\";document.body.appendChild(c)}google.dp=!0}};google.ps===void 0&&(google.ps=[]);function h(){var b=u,a=function(){};google.lx=google.stvsc?a:function(){k(b);google.lx=a};google.bx||google.lx()}function l(b,a){a&&(b.src=a);fp&&google.caft&&google.caft(function(){b.fetchPriority=fp});var d=b.onload;b.onload=function(c){d&&d(c);google.ps=google.ps.filter(function(G){return b!==G})};google.ps.push(b);document.body.appendChild(b)}google.as=l;function k(b){google.timers&&google.timers.load&&google.tick&&google.tick(\"load\",\"xjsls\");var a=document.createElement(\"script\");a.onerror=function(){google.ple=1};a.onload=function(){google.ple=0};google.xjsus=void 0;l(a,b);google.aple=-1;google.dp=!0};function m(b){var a=b.getAttribute(\"jscontroller\");return(a===\"UBXHI\"||a===\"R3fhkb\"||a===\"TSZEqd\")&&b.hasAttribute(\"data-src\")}function n(){for(var b=document.getElementsByTagName(\"img\"),a=0,d=b.length;a<d;a++){var c=b[a];if(c.hasAttribute(\"data-lzy_\")&&Number(c.getAttribute(\"data-atf\"))&1&&!m(c))return!0}return!1}for(var p=document.getElementsByTagName(\"img\"),q=0,r=p.length;q<r;++q){var t=p[q];Number(t.getAttribute(\"data-atf\"))&1&&m(t)&&(t.src=t.getAttribute(\"data-src\"))};var w,x,y,z,A,B,C,D,E,F;function H(){google.xjsu=u;e._F_jsUrl=u;A=function(){h()};w=!1;x=(st===1||st===3)&&!!google.caft&&!n();y=f();z=(st===2||st===3)&&!!y&&!n();B=pod;C=pop;D=povp;E=pop&&document.prerendering||povp&&document.hidden;F=D?\"visibilitychange\":\"prerenderingchange\"}function I(){w||x||z||E||(A(),w=!0)}\nsetTimeout(function(){google&&google.tick&&google.timers&&google.timers.load&&google.tick(\"load\",\"xjspls\");H();if(x||z||E){if(x){var b=function(){x=!1;I()};google.caft(b);window.setTimeout(b,amd)}z&&(b=function(){z=!1;I()},y.cbvi.push(b),window.setTimeout(b,mmd));if(E){var a=function(){(D?document.hidden:document.prerendering)||(E=!1,I(),document.removeEventListener(F,a))};document.addEventListener(F,a,{passive:!0})}if(B||C||D)w||g()}else A()},0);})();window._ = window._ || {};window._DumpException = _._DumpException = function(e){throw e;};window._s = window._s || {};_s._DumpException = _._DumpException;window._qs = window._qs || {};_qs._DumpException = _._DumpException;(function(){var t=[0,16384,0,0,0,0,0,606208,1,33376,536870914,34086912,0,4849664,8704,112224874,80904192,314630912,536876800,478152722,252544,34637824,8388608,1024,135168,128,39957,786432,8446914,16777216,8389318,134217728,286];window._F_toggles = window._xjs_toggles = t;})();window._F_installCss = window._F_installCss || function(css){};(function(){google.jl={bfl:0,dw:false,eli:false,ine:false,ubm:false,uwp:true,vs:false};})();(function(){var pmc='{\\x22d\\x22:{},\\x22sb_he\\x22:{\\x22client\\x22:\\x22heirloom-hp\\x22,\\x22dh\\x22:true,\\x22ds\\x22:\\x22\\x22,\\x22host\\x22:\\x22google.com\\x22,\\x22jsonp\\x22:true,\\x22msgs\\x22:{\\x22cibl\\x22:\\x22Clear Search\\x22,\\x22dym\\x22:\\x22Did you mean:\\x22,\\x22lcky\\x22:\\x22I\\\\u0026#39;m Feeling Lucky\\x22,\\x22lml\\x22:\\x22Learn more\\x22,\\x22psrc\\x22:\\x22This search was removed from your \\\\u003Ca href\\x3d\\\\\\x22/history\\\\\\x22\\\\u003EWeb History\\\\u003C/a\\\\u003E\\x22,\\x22psrl\\x22:\\x22Remove\\x22,\\x22sbit\\x22:\\x22Search by image\\x22,\\x22srch\\x22:\\x22Google Search\\x22},\\x22ovr\\x22:{},\\x22pq\\x22:\\x22\\x22,\\x22rfs\\x22:[],\\x22stok\\x22:\\x22HMqZxwi79Bc63PEyVVfYOOKoDpI\\x22}}';google.pmc=JSON.parse(pmc);})();</script></body></html>"
+				},
+				{
+					"name": "Code Does Not Exist",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/:code",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								":code"
+							],
+							"variable": [
+								{
+									"key": "code",
+									"value": "apple"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 18:59:08 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "31"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Short URL not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Swagger UI",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\": \"google\",\r\n    \"url\": \"https://www.google.com\"\r\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/swagger/index.html",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"swagger",
+						"index.html"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Swagger UI",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"google\",\r\n    \"url\": \"https://www.google.com\"\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/swagger/index.html",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"swagger",
+								"index.html"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 20 Jun 2025 20:10:14 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3519"
+						}
+					],
+					"cookie": [],
+					"body": "\n<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"UTF-8\">\n        <title>Swagger UI</title>\n        <link href=\"https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300,600|Titillium+Web:400,600,700\" rel=\"stylesheet\">\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"./swagger-ui.css\" >\n        <link rel=\"icon\" type=\"image/png\" href=\"./favicon-32x32.png\" sizes=\"32x32\" />\n        <link rel=\"icon\" type=\"image/png\" href=\"./favicon-16x16.png\" sizes=\"16x16\" />\n        <style>\n    html\n    {\n        box-sizing: border-box;\n        overflow: -moz-scrollbars-vertical;\n        overflow-y: scroll;\n    }\n    *,\n    *:before,\n    *:after\n    {\n        box-sizing: inherit;\n    }\n\n    body {\n      margin:0;\n      background: #fafafa;\n    }\n  </style>\n    </head>\n    <body>\n        <svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" style=\"position:absolute;width:0;height:0\">\n            <defs>\n                <symbol viewBox=\"0 0 20 20\" id=\"unlocked\">\n                    <path d=\"M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V6h2v-.801C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8z\"></path>\n                </symbol>\n                <symbol viewBox=\"0 0 20 20\" id=\"locked\">\n                    <path d=\"M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8zM12 8H8V5.199C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8z\"/>\n                </symbol>\n                <symbol viewBox=\"0 0 20 20\" id=\"close\">\n                    <path d=\"M14.348 14.849c-.469.469-1.229.469-1.697 0L10 11.819l-2.651 3.029c-.469.469-1.229.469-1.697 0-.469-.469-.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-.469-.469-.469-1.228 0-1.697.469-.469 1.228-.469 1.697 0L10 8.183l2.651-3.031c.469-.469 1.228-.469 1.697 0 .469.469.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c.469.469.469 1.229 0 1.698z\"/>\n                </symbol>\n                <symbol viewBox=\"0 0 20 20\" id=\"large-arrow\">\n                    <path d=\"M13.25 10L6.109 2.58c-.268-.27-.268-.707 0-.979.268-.27.701-.27.969 0l7.83 7.908c.268.271.268.709 0 .979l-7.83 7.908c-.268.271-.701.27-.969 0-.268-.269-.268-.707 0-.979L13.25 10z\"/>\n                </symbol>\n                <symbol viewBox=\"0 0 20 20\" id=\"large-arrow-down\">\n                    <path d=\"M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83c-.27.268-.707.268-.979 0l-7.908-7.83c-.27-.268-.27-.701 0-.969.271-.268.709-.268.979 0L10 13.25l7.418-7.141z\"/>\n                </symbol>\n                <symbol viewBox=\"0 0 24 24\" id=\"jump-to\">\n                    <path d=\"M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7z\"/>\n                </symbol>\n                <symbol viewBox=\"0 0 24 24\" id=\"expand\">\n                    <path d=\"M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z\"/>\n                </symbol>\n            </defs>\n        </svg>\n        <div id=\"swagger-ui\"></div>\n        <script src=\"./swagger-ui-bundle.js\"> </script>\n        <script src=\"./swagger-ui-standalone-preset.js\"> </script>\n        <script>\nwindow.onload = function() {\n  \n  const ui = SwaggerUIBundle({\n    url: \"doc.json\",\n    deepLinking:  true ,\n    docExpansion: \"list\",\n    dom_id: \"#swagger-ui\",\n    persistAuthorization:  false ,\n    validatorUrl: null,\n    presets: [\n      SwaggerUIBundle.presets.apis,\n      SwaggerUIStandalonePreset\n    ],\n    plugins: [\n      SwaggerUIBundle.plugins.DownloadUrl\n    ],\n    layout: \"StandaloneLayout\"\n  })\n  window.ui = ui\n}\n</script>\n    </body>\n</html>"
+				}
+			]
+		}
+	]
+}
