@@ -17,7 +17,7 @@ import (
 // @title           URL Shortener API
 // @version         1.0
 // @description     A simple URL shortener service
-// @host            https://url-shortener-uy9w.onrender.com/
+// @host            https://url-shortener-uy9w.onrender.com
 // @BasePath        /
 
 // @Summary      Render homepage
