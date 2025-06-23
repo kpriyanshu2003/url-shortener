@@ -9,6 +9,41 @@ import (
 	"github.com/kpriyanshu2003/url-shortener/internal/utils"
 )
 
+type DatabaseInterface interface {
+	CodeExists(code string) (bool, error)
+	InsertURL(mapping model.URLMapping) error
+	GetOriginalURL(code string) (string, error)
+}
+
+type UtilsInterface interface {
+	GenerateUniqueCode() (string, error)
+}
+
+type RealDatabase struct{}
+
+func (r *RealDatabase) CodeExists(code string) (bool, error) {
+	return database.CodeExists(code)
+}
+
+func (r *RealDatabase) InsertURL(mapping model.URLMapping) error {
+	return database.InsertURL(mapping)
+}
+
+func (r *RealDatabase) GetOriginalURL(code string) (string, error) {
+	return database.GetOriginalURL(code)
+}
+
+type RealUtils struct{}
+
+func (r *RealUtils) GenerateUniqueCode() (string, error) {
+	return utils.GenerateUniqueCode()
+}
+
+var (
+	DB    DatabaseInterface = &RealDatabase{}
+	Utils UtilsInterface    = &RealUtils{}
+)
+
 // ShortenURL godoc
 // @Summary      Create a short URL
 // @Description  Generates a short URL code for the given long URL. If no code is provided, one is generated.
@@ -32,8 +67,9 @@ func ShortenURL(c *fiber.Ctx) error {
 			"error": "URL is required",
 		})
 	}
+
 	if payload.Code == "" {
-		code, err := utils.GenerateUniqueCode()
+		code, err := Utils.GenerateUniqueCode()
 		if err != nil {
 			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 				"error": "Failed to generate unique code",
@@ -42,19 +78,20 @@ func ShortenURL(c *fiber.Ctx) error {
 		payload.Code = code
 	}
 
-	exists, err := database.CodeExists(payload.Code)
+	exists, err := DB.CodeExists(payload.Code)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": "Database error",
 		})
 	}
+
 	if exists {
 		return c.Status(fiber.StatusConflict).JSON(fiber.Map{
 			"error": "Short URL code already exists",
 		})
 	}
 
-	if err := database.InsertURL(payload); err != nil {
+	if err := DB.InsertURL(payload); err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": "Failed to insert URL into database",
 		})
@@ -79,12 +116,13 @@ func ShortenURL(c *fiber.Ctx) error {
 func Redirect(c *fiber.Ctx) error {
 	code := c.Params("code")
 
-	url, err := database.GetOriginalURL(code)
+	url, err := DB.GetOriginalURL(code)
 	if err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": "Database error",
 		})
 	}
+
 	if url == "" {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
 			"error": "Short URL not found",
