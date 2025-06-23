@@ -33,7 +33,7 @@ test-api:
 
 coverage:
 	@echo "Generating test coverage report..."
-	go test -v -coverpkg=./internal/repository,./internal/controller -coverprofile=coverage.out ./tests/...
+	go test -v -coverpkg=./internal/database,./internal/controller -coverprofile=coverage.out ./tests/...
 	go tool cover -html=coverage.out -o coverage.html
 	go tool cover -func=coverage.out
 	@echo "Coverage report generated: coverage.html"
