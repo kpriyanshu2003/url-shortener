@@ -163,6 +163,40 @@ Redirect
 curl -v http://localhost:3300/hello123
 ```
 
+## Testing
+
+Run tests (all) using:
+
+```bash
+make test-all
+```
+
+Run specific test file:
+
+```bash
+make test-api
+make test-unit
+make test-integration
+```
+
+Get Coverage Report:
+
+```bash
+make coverage
+```
+
+Find coverage report in `coverage.out` file. You can view it in terminal using:
+
+```bash
+go tool cover -func=coverage.out
+```
+
+This project accieves 100% test coverage for all packages. ( internal/database/db.go causes it to be 97.% as failure to connect to db are not acocunted for)
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
 ## Contributing
 
 Pull requests and issues welcome!
