@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for Book Tracker API With Keploy
+name: CI/CD Pipeline for CI/CD Pipeline for Url Shortener API With Keploy
 
 on:
   push:

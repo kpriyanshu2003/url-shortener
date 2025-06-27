@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for Book Tracker API
+name: CI/CD Pipeline for Url Shortener API
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4.2.2
@@ -16,9 +17,11 @@ jobs:
         with:
           go-version: 1.24
 
-      - name: Install Dependencies
+      - name: Create .env file for Docker Compose
         run: |
-          go mod tidy
+          echo "PGURL=${{ secrets.PG_URL }}" > .env
+          echo "PORT=${{ secrets.PORT }}" >> .env
+          echo "ENV=${{ secrets.ENV }}" >> .env
 
       - name: Set up Docker Compose and start services
         uses: hoverkraft-tech/compose-action@v2.2.0
