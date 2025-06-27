@@ -68,8 +68,8 @@ func TestAPIShortenURLWithoutCode(t *testing.T) {
 	body, _ := json.Marshal(urlMapping)
 	req := httptest.NewRequest(http.MethodPost, "/", bytes.NewReader(body))
 	req.Header.Set("Content-Type", "application/json")
-
-	resp, err := app.Test(req)
+	
+	resp, err := app.Test(req, 5*1000) 
 	if err != nil {
 		t.Fatalf("Failed to perform request: %v", err)
 	}
