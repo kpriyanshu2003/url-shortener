@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for CI/CD Pipeline for Url Shortener API With Keploy
+name: CI/CD Pipeline for Url Shortener API With Keploy
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
 
       - name: Create .env file for Docker Compose
         run: |
-          echo "PGURL=${{ secrets.PG_URL }}" > .env
+          echo "PG_URL=${{ secrets.PG_URL }}" > .env
           echo "PORT=${{ secrets.PORT }}" >> .env
           echo "ENV=${{ secrets.ENV }}" >> .env
 
