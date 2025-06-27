@@ -20,6 +20,12 @@ jobs:
         run: |
           go mod tidy
 
+      - name: Create .env file for Docker Compose
+        run: |
+          echo "PGURL=${{ secrets.PG_URL }}" > .env
+          echo "PORT=${{ secrets.PORT }}" >> .env
+          echo "ENV=${{ secrets.ENV }}" >> .env
+
       - name: Docker Compose Action
         uses: hoverkraft-tech/compose-action@v2.2.0
         with:
