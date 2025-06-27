@@ -193,6 +193,20 @@ go tool cover -func=coverage.out
 
 This project accieves 100% test coverage for all packages. ( internal/database/db.go causes it to be 97.% as failure to connect to db are not acocunted for)
 
+## Test Outputs
+
+1. Gh Actions
+
+![GitHub Actions](./public/resources/gh-actions-page.png)
+
+2. CI/CD Pipeline for Url Shortener API
+
+![CI/CD Pipeline](./public/resources/ci-cd-test.png)`
+
+3. CI/CD Pipeline for Url Shortener API With Keploy
+
+![CI/CD Pipeline with Keploy](./public/resources/ci-cd-test-keploy.png)
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
