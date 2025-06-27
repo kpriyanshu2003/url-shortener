@@ -41,3 +41,7 @@ coverage:
 coverage-view:
 	@echo "Opening coverage report..."
 	go tool cover -func=coverage.out
+
+build-docker:
+	@echo "Building Docker image..."
+	COMPOSE_BAKE=true docker build -t url-shortener:latest .

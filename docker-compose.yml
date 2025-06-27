@@ -1,0 +1,11 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:3300"
+    env_file:
+      - .env
+    environment:
+      - ENV=production

@@ -1,0 +1,34 @@
+name: CI/CD Pipeline for Book Tracker API
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.24
+
+      - name: Install Dependencies
+        run: |
+          go mod tidy
+
+      - name: Set up Docker Compose and start services
+        uses: hoverkraft-tech/compose-action@v2.2.0
+        with:
+          compose-file: "docker-compose.yml"
+
+      - name: Run Go Tests Inside Docker
+        run: |
+          docker compose exec -T app sh -c "go test -v -coverpkg=./internal/database,./internal/controller -coverprofile=coverage.out ./tests/..."
+
+      - name: Generate Coverage Report
+        run: |
+          docker compose exec -T app sh -c "go tool cover -func=coverage.out"

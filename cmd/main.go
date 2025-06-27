@@ -12,7 +12,17 @@ import (
 	"github.com/kpriyanshu2003/url-shortener/internal/config"
 	"github.com/kpriyanshu2003/url-shortener/internal/controller"
 	"github.com/kpriyanshu2003/url-shortener/internal/database"
+	"github.com/joho/godotenv"
 )
+
+func init() {
+	if config.GetEnv("ENV", "development") == "development" {
+		if err := godotenv.Load(); err != nil {
+			log.Fatalf("Error loading .env file: %v", err)
+		}
+	}
+}
+
 
 // @title           URL Shortener API
 // @version         1.0

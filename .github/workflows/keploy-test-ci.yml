@@ -1,0 +1,35 @@
+name: CI/CD Pipeline for Book Tracker API With Keploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.2.2
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.24
+
+      - name: Install Dependencies
+        run: |
+          go mod tidy
+
+      - name: Docker Compose Action
+        uses: hoverkraft-tech/compose-action@v2.2.0
+        with:
+          compose-file: "docker-compose.yml"
+
+      - name: Setup Keploy
+        run: |
+          curl --silent -L https://keploy.io/ent/install.sh | bash
+
+      - name: Run Keploy Test Suite
+        run: |
+          export KEPLOY_API_KEY=${{ secrets.KEPLOY_API_KEY }}
+          keploy test-suite --app=e8ea1ed4-8b13-4b68-91a2-3e02e472df3f --base-path http://localhost:8080 --cloud
